@@ -34,5 +34,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "html2pdf.js": "^0.10.1",
+    "react-icons": "^4.7.1"
   }
 }

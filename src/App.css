@@ -1,38 +1,271 @@
-.App {
-  text-align: center;
+:root{
+    --primary-color: rgb(25, 182, 255);
+    --sec-color: rgb(12, 82, 151);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+	padding: 0;
+	margin: 0;
+}
+body {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size: 1rem;
+}
+.form-cont {
+	width: 100vw;
+	height: 100vh;
+	background: url("./Assets/resume1.jpg");
+	padding: 10px 0;
+	box-sizing: border-box;
+}
+.form {
+	background: rgb(255, 255, 255, .75);
+    backdrop-filter: blur(5px);
+	/* border: 1px solid black; */
+	box-shadow: inset 0px 0px 10px var(--primary-color);
+	width: 600px;
+	height: 600px;
+	padding: 20px 0 20px 0;
+	margin: 20px auto;
+	border-radius: 10px;
+	filter: blur(0.25px);
+	box-sizing: border-box;
+	/* display: flex;
+    flex-direction: column;
+    align-items: center; */
+    position: relative;
+}
+.form-items {
+	height: 450px;
+	display: flex;
+	align-items: center;
+	justify-items: center;
+}
+.form-item {
+	margin: auto;
+	/* background: red; */
+}
+.item-heading{
+    width: 100%;
+    text-align: center;
+    color: var(--primary-color);
+    font-size: 200%;
+}
+.change-btns {
+    all: unset;
+    position: absolute;
+    top: 80%;
+    width: 100%;
+    margin: 0;
+    /* background: red; */
+	display: flex;
+    justify-content: space-between;
+}
+.change-item{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    display: grid;
+    place-items: center;
+    font-size: 150%;
+    color: white;
+}
+.change-item:first-child{
+    top: 0;
+    left: 20px;
+
+}
+.change-item:last-child{
+    top: 0;
+    right: 20px;
+}
+input {
+	display: block;
+	width: 400px;
+	height: 35px;
+	font-size: 100%;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	margin: 10px auto;
+	text-indent: 10px;
+	border-radius: 5px;
+	border: none;
+	background: var(--primary-color);
+	color: white;
+    transition: .35s;
+}
+input::placeholder, textarea::placeholder {
+	color: white;
+	font-weight: 900;
+}
+input:focus, textarea:focus{
+    background: var(--sec-color);
+    outline-color: var(--primary-color);
+}
+textarea {
+	display: block;
+	width: 400px;
+	height: 100px;
+	margin: 10px auto;
+	font-size: 100%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+	border: none;
+	box-sizing: border-box;
+	padding: 10px;
+	background: var(--primary-color);
+    border-radius: 5px;
+    color: white;
+}
+.duration{
+    width: 400px;
+    /* background: red; */
+    display: flex;
+    justify-content: space-between;
+
+}
+.duration label{
+    color: var(--sec-color);
+    margin: 0;
+    flex-basis: 40%;
+    /* width: 40%; */
+}
+.duration label input{
+    width: 100%;
+}
+button {
+	display: block;
+	width: 100px;
+	height: 40px;
+	margin: 10px auto;
+	background: var(--primary-color);
+	border: none;
+	border-radius: 5px;
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 700;
+    transition: .35s;
+}
+button:focus{
+    background: var(--sec-color);
+    outline-color: var(--primary-color);
+}
+button:hover{
+    background: var(--sec-color);
+}
+.disabled:disabled{
+    background:rgb(144, 218, 252);
+}
+.project{
+    color: var(--sec-color);
+    position: relative;
+}
+.project h2{
+    font-size: 120%;
+    
+}
+.project-details{
+    position: absolute;
+    opacity: 0;
+    scale: 0;
+    transition: .4s;
+    background: white;
+    z-index: 1;
+    width: 400px;
+    border-radius: 10px;
+    padding: 10px;
+}
+.project:hover h2{
+    /* background: white; */
+    cursor: pointer;
+}
+.project:hover > .project-details{
+ opacity: 1;
+ scale: 1;   
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.preview {
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.container {
+	width: 750px;
+	margin: 0px auto;
+	height: 150vh;
+	/* background: blue; */
+	/* display: flex;
+    flex-direction:column;
+    justify-content: space-around;
+    align-items: center; */
+	padding: 20px 10px;
+	/* border: 2px solid black; */
+	/* box-shadow: 15px 15px 0 black; */
 }
-
-.App-link {
-  color: #61dafb;
+.theme {
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.theme .name {
+	/* background:lime; */
+	text-align: center;
+	font-size: 120%;
+	margin: 10px;
+	border-top: 1px solid black;
+	border-bottom: solid 5px black;
+	padding: 10px 0;
+}
+.theme .name h2 {
+}
+.theme .name p {
+	padding-bottom: 5px;
+	border-bottom: 1px solid black;
+}
+.theme > * {
+	margin: 20px;
+}
+.theme .contact {
+	/* display: flex; */
+	/* justify-content: space-around; */
+	/* flex-wrap: wrap; */
+	margin: 20px;
+	/* background: red; */
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+}
+.contact p {
+	display: flex;
+	/* justify-content: ; */
+	align-items: center;
+	margin-top: 10px;
+}
+.contact-icon {
+	margin-right: 20px;
+}
+.theme .about {
+	/* background: lime; */
+	height: max-content;
+	margin: 20px 30px;
+}
+fieldset {
+	border: 1px solid transparent;
+	border-top: 1px solid rgb(0, 0, 0);
+}
+legend {
+	padding: 5px 10px;
+	margin: auto;
+}
+.theme .skills {
+	/* background: lime; */
+	width: max-content;
+	height: min-content;
+	margin: auto;
+	/* display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-around; */
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: repeat(auto, 1fr);
+}
+.det {
+	text-indent: 10px;
+}
+.theme .skills li {
+	/* background: red;  */
+	margin: 2px 30px;
 }
