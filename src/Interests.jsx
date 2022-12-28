@@ -1,4 +1,6 @@
 import React, { useState } from "react"
+import { AiFillCloseCircle } from "react-icons/ai"
+import {MdAddCircle} from 'react-icons/md'
 
 const Interests = (props) => {
 	const [interest, setInterest] = useState("")
@@ -9,7 +11,19 @@ const Interests = (props) => {
 		setInterest("")
 	}
 
-	const interests = props.interests.length > 0 ? props.interests.map((interest) => <li>{interest}</li>) : ""
+	const interests =
+		props.interests.length > 0
+			? props.interests.map((interest, index) => (
+					<p
+						key={index}
+						id={index}
+						onClick={() => props.removeInterest("interests", index)}
+						className='interest'
+					>
+						{interest} <AiFillCloseCircle className='close' />
+					</p>
+			  ))
+			: ""
 
 	return (
 		<div>
@@ -20,9 +34,9 @@ const Interests = (props) => {
 				value={interest}
 				onChange={(e) => setInterest(e.target.value)}
 			/>
-			<button onClick={addInterest}>Add Interest</button>
+			<button onClick={addInterest}><MdAddCircle className='add'/></button>
 
-			<div>{interests}</div>
+			<div className='interests'>{interests}</div>
 		</div>
 	)
 }

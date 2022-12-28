@@ -1,16 +1,19 @@
-import React, { useState } from "react"
+import React, { useRef, useState } from "react"
+import { SwitchTransition, CSSTransition } from "react-transition-group"
+import Personal from "./Personal"
 import Skills from "./Skills"
 import Projects from "./Projects"
 import Experience from "./Experience"
 import Education from "./Education"
 import Interests from "./Interests"
 import Languages from "./Languages"
-import {FaArrowRight, FaArrowLeft} from 'react-icons/fa'
+import { FaArrowRight, FaArrowLeft } from "react-icons/fa"
 
-import img from './Assets/resume1.jpg'
+
 
 const Form = (props) => {
-	const [index, setIndex] = useState(2)
+	const [index, setIndex] = useState(0)
+	const [prevIndex, setPrevIndex] = useState(-1)
 	const [values, setValues] = useState({
 		name: "",
 		title: "",
@@ -21,13 +24,42 @@ const Form = (props) => {
 		portfolio: "",
 		linkedin: "",
 		skills: [],
-		projects: [{name: 'Markdown Editor', description: 'Complex problem-solver with analytical and driven mindset. Dedicated to achieving demanding development objectives according to tight schedules while producing impeccable code.'}],
+		projects: [
+			{
+				name: "Markdown Editor",
+				description:
+					"Complex problem-solver with analytical and driven mindset. Dedicated to achieving demanding development objectives according to tight schedules while producing impeccable code.",
+			},
+		],
 		experience: [],
 		certifications: [],
 		education: [],
 		interests: [],
 		languages: [],
 	})
+
+
+	const nodeRef = useRef(null)
+
+	const diff = prevIndex - index
+	const goForward = (e) => {
+		e.preventDefault()
+		setIndex((prev) => {
+			
+				setPrevIndex(prev)
+				return prev + 1
+			
+		})
+	}
+	const goBack = (e) => {
+		e.preventDefault()
+		setIndex((prev) => {
+			
+				setPrevIndex(prev)
+				return prev - 1
+			
+		})
+	}
 
 	const handleAdd = (name, value) => {
 		let except = ["projects", "skills", "experience", "education", "interests", "languages"]
@@ -39,149 +71,123 @@ const Form = (props) => {
 		}
 		setValues((prevValues) => ({ ...prevValues, [name]: value }))
 	}
-
+	const handleRemove = (name, index) => {
+		setValues((prevValues) => {
+			let update = prevValues[name].filter((item, i) => i !== index)
+			return { ...prevValues, [name]: update }
+		})
+	}
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		props.setFormData(values)
 		props.setPreview(true)
 	}
 
-	const changeItem = (e, val) => {
-		e.preventDefault()
-		val === "next" ? setIndex(index + 1) : setIndex(index - 1)
-	}
+	// const changeItem = (e, val) => {
+	// 	e.preventDefault()
+	// 	val === "next" ? setIndex(index + 1) : setIndex(index - 1)
+	// }
 
 	const formItems = [
-		<div className='form-item contact'>
-			
-			<input
-				type='text'
-				placeholder='Full Name'
-				name='name'
-				value={values.name}
-				onChange={(e) => handleAdd(e.target.name, e.target.value)}
-			/>
-			<input
-				type='text'
-				placeholder='Title'
-				name='title'
-				value={values.title}
-				onChange={(e) => handleAdd(e.target.name, e.target.value)}
-			/>
-			<textarea
-				placeholder='Professional Summary'
-				name='about'
-				value={values.about}
-				onChange={(e) => handleAdd(e.target.name, e.target.value)}
-			></textarea>
-			<input
-				type='text'
-				placeholder='Telephone'
-				name='tel'
-				value={values.tel}
-				onChange={(e) => handleAdd(e.target.name, e.target.value)}
-			/>
-			<input
-				type='text'
-				placeholder='City, eg. Accra, Ghana'
-				name='city'
-				value={values.city}
-				onChange={(e) => handleAdd(e.target.name, e.target.value)}
-			/>
-			<input
-				type='text'
-				placeholder='Email'
-				name='email'
-				value={values.email}
-				onChange={(e) => handleAdd(e.target.name, e.target.value)}
-			/>
-			<input
-				type='text'
-				placeholder='Portfolio'
-				name='portfolio'
-				value={values.portfolio}
-				onChange={(e) => handleAdd(e.target.name, e.target.value)}
-			/>
-			<input
-				type='text'
-				placeholder='LinkedIn'
-				name='linkedin'
-				value={values.linkedin}
-				onChange={(e) => handleAdd(e.target.name, e.target.value)}
+		<div className='form-item contact' ref={nodeRef}>
+			<Personal
+				handleAdd={handleAdd}
+				values={values}
 			/>
 		</div>,
-		<div className='form-item skills-item'>
+		<div className='form-item skills-item' ref={nodeRef}>
 			<Skills
 				// value={values.skills}
 				addSkill={handleAdd}
+				removeSkill={handleRemove}
 				skills={values.skills}
 			/>
 		</div>,
-		<div className='form-item projects-item'>
+		<div className='form-item projects-item' ref={nodeRef}>
 			<Projects
 				addProject={handleAdd}
 				projects={values.projects}
 			/>
 		</div>,
-		<div className='form-item exp-item'>
+		<div className='form-item exp-item' ref={nodeRef}>
 			<Experience
 				addExperience={handleAdd}
 				experiences={values.experience}
 			/>
 		</div>,
-		<div className='form-item edu-item'>
+		<div className='form-item edu-item' ref={nodeRef}>
 			<Education
 				addEducation={handleAdd}
 				education={values.education}
 			/>
 		</div>,
-		<div className='form-item interests-item'>
+		<div className='form-item interests-item' ref={nodeRef}>
 			<Interests
 				addInterest={handleAdd}
+				removeInterest={handleRemove}
 				interests={values.interests}
 			/>
 		</div>,
-		<div className='form-item lang-item'>
-
+		<div className='form-item lang-item' ref={nodeRef}>
 			<Languages
 				addLanguage={handleAdd}
+				removeLanguage={handleRemove}
 				languages={values.languages}
 			/>
 		</div>,
 	]
-	const headers = ['Personal Details', 'Skills','Projects','Experience','Education','Interests','Languages']
-	
-	return (
-		<div className="form-cont">
-		<form
-			className='form'
-			onSubmit={handleSubmit}
-		>
-			<h2 className="item-heading">{headers[index]}</h2>
+	const headers = ["Personal Details", "Skills", "Projects", "Experience", "Education", "Interests", "Languages"]
 
-			<div className='form-items'>{formItems[index]}</div>
-			<div className='change-btns'>
-				<button
-					onClick={(e) => changeItem(e, "prev")}
-					className='change-item disabled'
-					disabled={index === 0}
-				>
-					<FaArrowLeft />
-				</button>
-				<button
-					onClick={(e) => changeItem(e, "next")}
-					className='change-item disabled'
-					disabled={index === formItems.length - 1}
-				>
-					<FaArrowRight />
-				</button>
-			</div>
-			
-				<div>
-					<button type='submit' className='disabled' disabled={index < formItems.length - 1}>Preview</button>
+	return (
+		<div className='form-cont'>
+			<form
+				className='form'
+				onSubmit={handleSubmit}
+			>
+				<SwitchTransition mode='out-in'>
+					<CSSTransition
+						nodeRef={nodeRef}
+						// in={inProp}
+						key={index}
+						timeout={300}
+						classNames={diff < 0 ? "trans" : "reverse"}
+						mountOnEnter={true}
+					unmountOnExit={true}
+					><>
+				<h2 className='item-heading' nodeRef={nodeRef}>{headers[index]}</h2>
+				
+						<div className='form-items'>{formItems[index]}</div>
+					</></CSSTransition>
+				</SwitchTransition>
+				<div className='change-btns'>
+					<button
+						// onClick={(e) => changeItem(e, "prev")}
+						onClick={goBack}
+						className='change-item disabled'
+						disabled={index === 0}
+					>
+						<FaArrowLeft />
+					</button>
+					<button
+						// onClick={(e) => changeItem(e, "next")}
+						onClick={goForward}
+						className='change-item disabled'
+						disabled={index === formItems.length - 1}
+					>
+						<FaArrowRight />
+					</button>
 				</div>
-			
-		</form>
+
+				<div>
+					<button
+						type='submit'
+						className='disabled'
+						disabled={index < formItems.length - 1}
+					>
+						Preview
+					</button>
+				</div>
+			</form>
 		</div>
 	)
 }

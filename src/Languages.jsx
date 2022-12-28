@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
+import { AiFillCloseCircle } from "react-icons/ai"
+import {MdAddCircle} from 'react-icons/md'
 
 const Languages = (props) => {
-    const [language, setLanguage] = useState("")
+	const [language, setLanguage] = useState("")
 
 	const addLanguage = (e) => {
 		e.preventDefault()
@@ -9,7 +11,18 @@ const Languages = (props) => {
 		setLanguage("")
 	}
 
-	const languages = props.languages.length > 0 ? props.languages.map((language) => <li>{language}</li>) : ""
+	const languages =
+		props.languages.length > 0
+			? props.languages.map((language, index) => (
+					<p
+						key={index}
+						onClick={() => props.removeLanguage("languages", index)}
+						className='language'
+					>
+						{language} <AiFillCloseCircle className='close' />
+					</p>
+			  ))
+			: ""
 
 	return (
 		<div>
@@ -20,11 +33,11 @@ const Languages = (props) => {
 				value={language}
 				onChange={(e) => setLanguage(e.target.value)}
 			/>
-			<button onClick={addLanguage}>Add Language</button>
+			<button onClick={addLanguage}><MdAddCircle className='add'/></button>
 
-			<div>{languages}</div>
+			<div className='languages'>{languages}</div>
 		</div>
 	)
-};
+}
 
-export default Languages;
+export default Languages

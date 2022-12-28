@@ -1,13 +1,28 @@
 import React, { useState } from "react"
+import { AiFillCloseCircle } from "react-icons/ai"
+import {MdAddCircle} from 'react-icons/md'
 
 const Skills = (props) => {
 	// const [skillsList, setSkills] = useState([])
 	const [skill, setSkill] = useState("")
 
-	let skills = props.skills.length > 0 ? props.skills.map((skil) => <span>{skil}</span>) : ""
+
+	let skills =
+		props.skills.length > 0
+			? props.skills.map((skil, index) => (
+					<p
+						key={index}
+						id={index}
+						className='skill'
+						onClick={() => props.removeSkill("skills", index)}
+					>
+						{skil} <AiFillCloseCircle className='close' />
+					</p>
+			  ))
+			: ""
 
 	const addSkill = (e) => {
-        e.preventDefault()
+		e.preventDefault()
 		props.addSkill("skills", skill)
 		setSkill("")
 	}
@@ -15,7 +30,7 @@ const Skills = (props) => {
 		setSkill(e.target.value)
 	}
 	return (
-		<div className='skills'>
+		<div>
 			<input
 				type='text'
 				placeholder='Skills'
@@ -27,9 +42,9 @@ const Skills = (props) => {
 				className='add-skill'
 				onClick={addSkill}
 			>
-				Add Skill
+				<MdAddCircle className='add'/>
 			</button>
-			<div className='skills-list'>{skills}</div>
+			<div className='skills'>{skills}</div>
 		</div>
 	)
 }

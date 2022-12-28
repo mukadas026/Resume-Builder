@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import {MdAddCircle} from 'react-icons/md'
 
 const Projects = (props) => {
 	// const [projects, setProjects] = useState([])
@@ -94,7 +95,7 @@ const Projects = (props) => {
 				onChange={handleChange}
 			></textarea>
 			<div>
-				<button onClick={handleAdd}>Add Project</button>
+				<button onClick={handleAdd}><MdAddCircle className='add'/></button>
 			</div>
 			<div className='projects'>{projectsList}</div>
 		</div>

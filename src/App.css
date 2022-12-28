@@ -38,11 +38,13 @@ body {
 .form-items {
 	height: 450px;
 	display: flex;
-	align-items: center;
-	justify-items: center;
+	/* align-items: flex-start; */
+	/* justify-items: flex-start; */
+	/* background: blue; */
 }
 .form-item {
-	margin: auto;
+	align-self: flex-start;
+	margin: 0 auto;
 	/* background: red; */
 }
 .item-heading{
@@ -50,6 +52,7 @@ body {
     text-align: center;
     color: var(--primary-color);
     font-size: 200%;
+
 }
 .change-btns {
     all: unset;
@@ -105,7 +108,7 @@ input:focus, textarea:focus{
 textarea {
 	display: block;
 	width: 400px;
-	height: 100px;
+	height: 50px;
 	margin: 10px auto;
 	font-size: 100%;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -133,7 +136,9 @@ textarea {
     width: 100%;
 }
 button {
-	display: block;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	width: 100px;
 	height: 40px;
 	margin: 10px auto;
@@ -144,6 +149,7 @@ button {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-weight: 700;
     transition: .35s;
+	/* padding: 0 10px; */
 }
 button:focus{
     background: var(--sec-color);
@@ -155,15 +161,69 @@ button:hover{
 .disabled:disabled{
     background:rgb(144, 218, 252);
 }
-.project{
+.add{
+	font-size: 30px;
+	font-weight: 900;
+}
+.interests, .languages, .skills{
+	width: 400px;
+	/* background: red; */
+	display: flex;
+	flex-wrap: wrap;
+	max-height: 300px;
+	overflow-y: scroll;
+}
+.interest, .language, .skill{
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	margin: 5px 5px;
+	height: 40px;
+	/* width: 200px; */
+	width: max-content;
+	padding: 0 20px;
+	color: white;
+	background: var(--sec-color);
+	border-radius: 100px;
+	cursor: pointer;
+}
+
+.close{
+	margin-left: 10px;
+	justify-self: flex-end;
+	transform: translatey(1px);
+	opacity: 0;
+	
+	transition: .35s;
+	
+}
+.interest:hover > .close, .language:hover > .close, .skill:hover > .close{
+	opacity: 1;
+	
+}
+.projects{
+	height: 200px;
+	/* overflow-y: scroll; */
+	/* background: red; */
+}
+.experiences{
+	/* background: red; */
+	height: 100px;
+	width: 400px;
+	/* overflow-x: hidden; */
+	overflow-y: scroll;
+}
+
+.project, .experience{
     color: var(--sec-color);
     position: relative;
+	width: fit-content;
 }
-.project h2{
+.project h2, .experience h2{
     font-size: 120%;
     
 }
-.project-details{
+.project-details, .experience-details{
     position: absolute;
     opacity: 0;
     scale: 0;
@@ -174,11 +234,42 @@ button:hover{
     border-radius: 10px;
     padding: 10px;
 }
-.project:hover h2{
+.relative-pos{
+	position: relative;
+	/* background: red; */
+}
+.experience-hover{
+	position: absolute;
+	background:white;
+	color: var(--sec-color);
+	width: 400px;
+	max-height: 100px;
+	overflow-y: scroll;
+	z-index: 1;
+	top: 0;
+	left: 0px;
+	border-radius: 10px;
+	transition: .45s;
+	padding: 10px;
+	transform: translatey(-50px) scaley(0) ;
+	opacity: 0;
+	animation: in .1s linear forwards;
+}
+@keyframes in{
+	100%{
+		opacity: 1;
+		transform:translatey(0) scaley(1) ;
+	}
+}
+.experience-details{
+	width: 400px;
+	box-sizing: border-box;
+}
+.project:hover h2, .experience:hover h2{
     /* background: white; */
     cursor: pointer;
 }
-.project:hover > .project-details{
+.project:hover > .project-details, .experience:hover > .experience-details{
  opacity: 1;
  scale: 1;   
 }
@@ -268,4 +359,50 @@ legend {
 .theme .skills li {
 	/* background: red;  */
 	margin: 2px 30px;
+}
+
+
+
+
+/* ========= T E S T I N G ======= */
+h1 {
+	text-align: center;
+}
+.trans-enter {
+	opacity: 0;
+	transform: translatex(100px);
+}
+.trans-enter-active {
+	opacity: 1;
+	transition: 0.3s;
+	transform: translatex(0);
+}
+.trans-exit {
+	opacity: 1;
+
+	transform: translatex(0);
+}
+.trans-exit-active {
+	opacity: 0;
+	transition: 0.3s;
+	transform: translatex(-100px);
+}
+
+.reverse-enter {
+	opacity: 0;
+	transform: translatex(-100px);
+}
+.reverse-enter-active {
+	opacity: 1;
+	transition: 0.3s;
+	transform: translatex(0);
+}
+.reverse-exit {
+	opacity: 1;
+	transform: translate(0);
+}
+.reverse-exit-active {
+	opacity: 0;
+	transition: 0.3s;
+	transform: translatex(100px);
 }
