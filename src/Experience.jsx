@@ -22,7 +22,7 @@ const Experiences = (props) => {
 
 		if (name === "start" || name === "end") {
 			let date = new Date(value)
-			let str = `${date.getMonth()}/${date.getFullYear()}`
+			let str = `${date.getMonth() + 1}/${date.getFullYear()}`
 			let nameStr = `${name}Str`
 			return setExperience((prevExperience) => ({ ...prevExperience, [name]: value, [nameStr]: str }))
 		}

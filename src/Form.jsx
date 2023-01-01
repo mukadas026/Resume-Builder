@@ -11,7 +11,7 @@ import { FaArrowRight, FaArrowLeft } from "react-icons/fa"
 
 const Form = (props) => {
 
-	const formData = sessionStorage.getItem('formData') ? JSON.parse(sessionStorage.getItem('formData')) : 0
+	const formData = localStorage.getItem('formData') ? JSON.parse(localStorage.getItem('formData')) : 0
 
 	const [index, setIndex] = useState(0)
 	const [prevIndex, setPrevIndex] = useState(-1)
@@ -34,7 +34,7 @@ const Form = (props) => {
 	})
 
 	useEffect(() => {
-		sessionStorage.setItem('formData', JSON.stringify(values))
+		localStorage.setItem('formData', JSON.stringify(values))
 	}, [values])
 
 	const nodeRef = useRef(null)

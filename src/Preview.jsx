@@ -1,6 +1,8 @@
 import React from "react"
 import { IoLocation, IoMail, IoGlobeOutline, IoLogoLinkedin } from "react-icons/io5"
 import { BsTelephoneFill } from "react-icons/bs"
+import {AiFillEdit} from 'react-icons/ai'
+import {RiDownloadFill} from 'react-icons/ri'
 import html2pdf from "html2pdf.js"
 // import jsPDF from "jspdf"
 
@@ -150,8 +152,8 @@ const Preview = (props) => {
 				</fieldset>
 			</div>
 			<div className="preview-btns">
-				<button onClick={() => props.setPreview(false)}>Edit</button>
-				<button onClick={handleDownload}>download</button>
+				<button onClick={() => props.setPreview(false)}><AiFillEdit /> Edit</button>
+				<button onClick={handleDownload}><RiDownloadFill/> download</button>
 			</div>
 		</div>
 	)

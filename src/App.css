@@ -301,8 +301,8 @@ summary {
 }
 .container {
 	width: 750px;
-	margin: 0px auto 30px auto;
-	height: 150vh;
+	margin: 0px auto 50px auto;
+	min-height: 150vh;
 	/* background: blue; */
 	/* display: flex;
     flex-direction:column;
@@ -369,7 +369,8 @@ legend {
 }
 .theme .skills {
 	/* background: lime; */
-	width: max-content;
+	width: fit-content;
+	max-width: 100%;
 	height: min-content;
 	margin: auto;
 	/* display: flex;
@@ -397,7 +398,7 @@ legend {
 .preview-btns {
 	width: fit-content;
 	display: flex;
-	margin: auto;
+	margin: 50px auto;
 	gap: 10px;
 }
 /* ========= T R A N S I T I O N S ======= */
