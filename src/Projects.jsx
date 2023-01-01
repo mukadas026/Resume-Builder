@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 import { MdAddCircle } from "react-icons/md"
-import { AiFillCloseCircle } from "react-icons/ai"
 import { IoTrashSharp } from "react-icons/io5"
 
 const Projects = (props) => {

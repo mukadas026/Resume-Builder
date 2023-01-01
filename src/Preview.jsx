@@ -1,8 +1,8 @@
 import React from "react"
 import { IoLocation, IoMail, IoGlobeOutline, IoLogoLinkedin } from "react-icons/io5"
-import { BsTelephoneFill, BsGithub, BsTwitter, BsFillCalendarDateFill } from "react-icons/bs"
+import { BsTelephoneFill } from "react-icons/bs"
 import html2pdf from "html2pdf.js"
-import jsPDF from "jspdf"
+// import jsPDF from "jspdf"
 
 const Preview = (props) => {
 	let values = props.formData

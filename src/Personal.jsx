@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react"
-import { Transition } from "react-transition-group"
-
+import React from "react"
 
 
 const Personal = (props) => {
