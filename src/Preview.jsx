@@ -56,10 +56,10 @@ const Preview = (props) => {
 						<BsTelephoneFill className='contact-icon' /> {values.tel}
 					</p>
 					<p>
-						<IoGlobeOutline className='contact-icon' /> <a href={values.portfolio}>{values.portfolio}</a>
+						<IoGlobeOutline className='contact-icon' /> <a href={values.portfolio}>Twitter</a>
 					</p>
 					<p>
-						<IoLogoLinkedin className='contact-icon' /> <a href={values.linkedin}>{values.linkedin}</a>
+						<IoLogoLinkedin className='contact-icon' /> <a href={values.linkedin}>LinkedIn</a>
 					</p>
 				</div>
 				<div className='about'>
@@ -82,7 +82,7 @@ const Preview = (props) => {
 								return (
 									<div className='proj'>
 										<div>
-											<h2>{proj.name}</h2>
+											<h3>{proj.name}</h3>
 											<p>
 												{proj.start} - {proj.end}
 											</p>
