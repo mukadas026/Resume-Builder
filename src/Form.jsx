@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { SwitchTransition, CSSTransition } from "react-transition-group"
 import Personal from "./Personal"
 import Skills from "./Skills"
@@ -9,12 +9,13 @@ import Interests from "./Interests"
 import Languages from "./Languages"
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa"
 
-
-
 const Form = (props) => {
+
+	const formData = sessionStorage.getItem('formData') ? JSON.parse(sessionStorage.getItem('formData')) : 0
+
 	const [index, setIndex] = useState(0)
 	const [prevIndex, setPrevIndex] = useState(-1)
-	const [values, setValues] = useState({
+	const [values, setValues] = useState(formData || {
 		name: "",
 		title: "",
 		about: "",
@@ -24,8 +25,7 @@ const Form = (props) => {
 		portfolio: "",
 		linkedin: "",
 		skills: [],
-		projects: [
-		],
+		projects: [],
 		experience: [],
 		certifications: [],
 		education: [],
@@ -33,6 +33,9 @@ const Form = (props) => {
 		languages: [],
 	})
 
+	useEffect(() => {
+		sessionStorage.setItem('formData', JSON.stringify(values))
+	}, [values])
 
 	const nodeRef = useRef(null)
 
@@ -40,19 +43,15 @@ const Form = (props) => {
 	const goForward = (e) => {
 		e.preventDefault()
 		setIndex((prev) => {
-			
-				setPrevIndex(prev)
-				return prev + 1
-			
+			setPrevIndex(prev)
+			return prev + 1
 		})
 	}
 	const goBack = (e) => {
 		e.preventDefault()
 		setIndex((prev) => {
-			
-				setPrevIndex(prev)
-				return prev - 1
-			
+			setPrevIndex(prev)
+			return prev - 1
 		})
 	}
 
@@ -84,13 +83,19 @@ const Form = (props) => {
 	// }
 
 	const formItems = [
-		<div className='form-item contact' ref={nodeRef}>
+		<div
+			className='form-item contact'
+			ref={nodeRef}
+		>
 			<Personal
 				handleAdd={handleAdd}
 				values={values}
 			/>
 		</div>,
-		<div className='form-item skills-item' ref={nodeRef}>
+		<div
+			className='form-item skills-item'
+			ref={nodeRef}
+		>
 			<Skills
 				// value={values.skills}
 				addSkill={handleAdd}
@@ -98,35 +103,50 @@ const Form = (props) => {
 				skills={values.skills}
 			/>
 		</div>,
-		<div className='form-item projects-item' ref={nodeRef}>
+		<div
+			className='form-item projects-item'
+			ref={nodeRef}
+		>
 			<Projects
 				addProject={handleAdd}
 				projects={values.projects}
 				removeProject={handleRemove}
 			/>
 		</div>,
-		<div className='form-item exp-item' ref={nodeRef}>
+		<div
+			className='form-item exp-item'
+			ref={nodeRef}
+		>
 			<Experience
 				addExperience={handleAdd}
 				removeExperience={handleRemove}
 				experiences={values.experience}
 			/>
 		</div>,
-		<div className='form-item edu-item' ref={nodeRef}>
+		<div
+			className='form-item edu-item'
+			ref={nodeRef}
+		>
 			<Education
 				addEducation={handleAdd}
 				removeEducation={handleRemove}
 				education={values.education}
 			/>
 		</div>,
-		<div className='form-item interests-item' ref={nodeRef}>
+		<div
+			className='form-item interests-item'
+			ref={nodeRef}
+		>
 			<Interests
 				addInterest={handleAdd}
 				removeInterest={handleRemove}
 				interests={values.interests}
 			/>
 		</div>,
-		<div className='form-item lang-item' ref={nodeRef}>
+		<div
+			className='form-item lang-item'
+			ref={nodeRef}
+		>
 			<Languages
 				addLanguage={handleAdd}
 				removeLanguage={handleRemove}
@@ -140,7 +160,7 @@ const Form = (props) => {
 		<div className='form-cont'>
 			<form
 				className='form'
-				onSubmit={handleSubmit}
+				// onSubmit={handleSubmit}
 			>
 				<SwitchTransition mode='out-in'>
 					<CSSTransition
@@ -150,12 +170,19 @@ const Form = (props) => {
 						timeout={300}
 						classNames={diff <= 0 ? "trans" : "reverse"}
 						mountOnEnter={true}
-					unmountOnExit={true}
-					><>
-				<h2 className='item-heading' nodeRef={nodeRef}>{headers[index]}</h2>
-				
-						<div className='form-items'>{formItems[index]}</div>
-					</></CSSTransition>
+						unmountOnExit={true}
+					>
+						<>
+							<h2
+								className='item-heading'
+								nodeRef={nodeRef}
+							>
+								{headers[index]}
+							</h2>
+
+							<div className='form-items'>{formItems[index]}</div>
+						</>
+					</CSSTransition>
 				</SwitchTransition>
 				<div className='change-btns'>
 					<button
@@ -181,6 +208,7 @@ const Form = (props) => {
 						type='submit'
 						className='disabled'
 						disabled={index < formItems.length - 1}
+						onClick={handleSubmit}
 					>
 						Preview
 					</button>

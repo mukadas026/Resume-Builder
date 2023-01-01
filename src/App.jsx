@@ -6,23 +6,7 @@ import "./App.css"
 
 const App = () => {
 	const [preview, setPreview] = useState(false)
-	const [formData, setFormData] = useState({
-		name: "",
-		title: "",
-		about: "",
-		tel: "",
-		city: "",
-		email: "",
-		portfolio: "",
-		linkedin: "",
-		skills: [],
-		
-		experience: [],
-		education: [],
-		interests: [],
-		languages: [],
-		
-	})
+	const [formData, setFormData] = useState({})
 
 	return (
 		<div>
@@ -33,6 +17,7 @@ const App = () => {
 				/>
 			) : (
 				<Form
+					
 					setPreview={setPreview}
 					setFormData={setFormData}
 				/>
