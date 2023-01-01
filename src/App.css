@@ -301,7 +301,7 @@ summary {
 }
 .container {
 	width: 750px;
-	margin: 0px auto;
+	margin: 0px auto 30px auto;
 	height: 150vh;
 	/* background: blue; */
 	/* display: flex;
