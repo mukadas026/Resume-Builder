@@ -54,10 +54,10 @@ const Preview = (props) => {
 						<BsTelephoneFill className='contact-icon' /> {values.tel}
 					</p>
 					<p>
-						<IoGlobeOutline className='contact-icon' /> {values.portfolio}
+						<IoGlobeOutline className='contact-icon' /> <a href={values.portfolio}>{values.portfolio}</a>
 					</p>
 					<p>
-						<IoLogoLinkedin className='contact-icon' /> <a href='#'>{values.linkedin}</a>
+						<IoLogoLinkedin className='contact-icon' /> <a href={values.linkedin}>{values.linkedin}</a>
 					</p>
 				</div>
 				<div className='about'>
@@ -72,52 +72,65 @@ const Preview = (props) => {
 						{values.skills.length > 0 && values.skills.map((skill) => <li>{skill}</li>)}
 					</div>
 				</fieldset>
-				<div className='projects'>
+				<div className='projs'>
 					<fieldset>
 						<legend>PROJECTS</legend>
 						{values.projects.length > 0 &&
 							values.projects.map((proj) => {
 								return (
-									<div className='project'>
-										<h2>{proj.name}</h2>
-										<p>{proj.duration}</p>
+									<div className='proj'>
+										<div>
+											<h2>{proj.name}</h2>
+											<p>
+												{proj.start} - {proj.end}
+											</p>
+										</div>
+
 										<p className='det'>{proj.description}</p>
 									</div>
 								)
 							})}
 					</fieldset>
 				</div>
-				<div className='experiences'>
+				<div className='exps'>
 					<fieldset>
 						<legend>EXPERIENCE</legend>
 						{values.experience.length > 0 &&
 							values.experience.map((item) => (
-								<div className='experience'>
-									<p>
-										<b>{item.org}</b> <em>{item.location}</em>
-									</p>
+								<div className='exp'>
+									<div>
+										<p>
+											<b>{item.org}</b> <em>{item.location}</em>
+										</p>
+										<p>
+											<em>{item.startStr}</em> - <em>{item.endStr}</em>
+										</p>
+									</div>
 									<p>
 										<strong>{item.role}</strong>
 									</p>
-									<p>
-										From <em>{item.start}</em> to <em>{item.end}</em>
-									</p>
+
 									<p className='det'>{item.details}</p>
 								</div>
 							))}
 					</fieldset>
 				</div>
-				<div className='educations'>
+				<div className='edus'>
 					<fieldset>
 						<legend>EDUCATION</legend>
 						{values.education.length > 0 &&
 							values.education.map((item) => (
-								<div className='education'>
+								<div className='edu'>
+									<div>
+										<p>
+											<b>{item.institution}</b> - {item.location}
+										</p>
+										<p>
+											<em>{item.gradDate}</em>
+										</p>
+									</div>
 									<p>
-										<b>{item.institution}</b> - <b>{item.program}</b>
-									</p>
-									<p>
-										{item.location} - <em>{item.graduation}</em>
+										<b>{item.program}</b>
 									</p>
 								</div>
 							))}
@@ -136,7 +149,8 @@ const Preview = (props) => {
 					</div>
 				</fieldset>
 			</div>
-			<div>
+			<div className="preview-btns">
+				<button onClick={() => props.setPreview(false)}>Edit</button>
 				<button onClick={handleDownload}>download</button>
 			</div>
 		</div>

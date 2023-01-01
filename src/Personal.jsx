@@ -35,7 +35,7 @@ const Personal = (props) => {
 			/>
 			<input
 				type='text'
-				placeholder='City, eg. Accra, Ghana'
+				placeholder='City | eg. Accra, Ghana'
 				name='city'
 				value={props.values.city}
 				onChange={(e) => props.handleAdd(e.target.name, e.target.value)}

@@ -25,11 +25,6 @@ const Form = (props) => {
 		linkedin: "",
 		skills: [],
 		projects: [
-			{
-				name: "Markdown Editor",
-				description:
-					"Complex problem-solver with analytical and driven mindset. Dedicated to achieving demanding development objectives according to tight schedules while producing impeccable code.",
-			},
 		],
 		experience: [],
 		certifications: [],
@@ -107,17 +102,20 @@ const Form = (props) => {
 			<Projects
 				addProject={handleAdd}
 				projects={values.projects}
+				removeProject={handleRemove}
 			/>
 		</div>,
 		<div className='form-item exp-item' ref={nodeRef}>
 			<Experience
 				addExperience={handleAdd}
+				removeExperience={handleRemove}
 				experiences={values.experience}
 			/>
 		</div>,
 		<div className='form-item edu-item' ref={nodeRef}>
 			<Education
 				addEducation={handleAdd}
+				removeEducation={handleRemove}
 				education={values.education}
 			/>
 		</div>,
@@ -150,7 +148,7 @@ const Form = (props) => {
 						// in={inProp}
 						key={index}
 						timeout={300}
-						classNames={diff < 0 ? "trans" : "reverse"}
+						classNames={diff <= 0 ? "trans" : "reverse"}
 						mountOnEnter={true}
 					unmountOnExit={true}
 					><>

@@ -1,9 +1,11 @@
 import React, { useState } from "react"
 import { MdAddCircle } from "react-icons/md"
+import { AiFillCloseCircle } from "react-icons/ai"
+import { IoTrashSharp } from "react-icons/io5"
 
 const Experiences = (props) => {
 	// const [experiences, setexperiences] = useState([])
-	const [hover, setHover] = useState(false)
+	// const [hover, setHover] = useState(false)
 	const [experience, setExperience] = useState({
 		org: "",
 		start: "",
@@ -47,45 +49,28 @@ const Experiences = (props) => {
 		props.experiences.length > 0
 			? props.experiences.map((proj, index) => {
 					return (
-						<div
-							className='experience'
-							
-							onMouseEnter={() => setHover([true, index])}
-							// onMouseOut={() => setHover([false, null])}
-						>
-							<h2>
-								{proj.org} - {proj.role} | {proj.location}
-							</h2>
-							{/* <div className='experience-details'>
+						<details className='experience'>
+							<summary>
+								<b>
+									{proj.org} - {proj.role} | {proj.location}
+								</b>{" "}
+								<span
+									onClick={() => props.removeExperience("experience", index)}
+									className='close-container'
+								>
+									<IoTrashSharp className='close' />
+								</span>
+							</summary>
+							<div className='experience-details'>
 								<p>
 									<em>{proj.startStr}</em> - <em>{proj.endStr}</em>
 								</p>
 								<p>{proj.details}</p>
-							</div> */}
-						</div>
+							</div>
+						</details>
 					)
 			  })
 			: ""
-
-	const onHover = hover[0] ? (
-		<div
-			className='experience experience-hover'
-			onMouseLeave={() => setHover([false, null])}
-		>
-			<h2>
-				{props.experiences[hover[1]].org} - {props.experiences[hover[1]].role} |{" "}
-				{props.experiences[hover[1]].location}
-			</h2>
-			<div className=''>
-				<p>
-					<em>{props.experiences[hover[1]].startStr}</em> - <em>{props.experiences[hover[1]].endStr}</em>
-				</p>
-				<p>{props.experiences[hover[1]].details}</p>
-			</div>
-		</div>
-	) : (
-		""
-	)
 
 	return (
 		<div>
@@ -105,7 +90,7 @@ const Experiences = (props) => {
 			/>
 			<input
 				type='text'
-				placeholder='Location'
+				placeholder='Location | eg. Accra, Ghana'
 				name='location'
 				value={experience.location}
 				onChange={handleChange}
@@ -141,10 +126,8 @@ const Experiences = (props) => {
 					<MdAddCircle className='add' />
 				</button>
 			</div>
-			<div className="relative-pos" onMouseLeave={() => setHover([false, null])}>
-				{onHover}
-				<div className='experiences'>{experiencesList}</div>
-			</div>
+
+			<div className='experiences'>{experiencesList}</div>
 		</div>
 	)
 }

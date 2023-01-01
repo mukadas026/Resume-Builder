@@ -1,6 +1,6 @@
-:root{
-    --primary-color: rgb(25, 182, 255);
-    --sec-color: rgb(12, 82, 151);
+:root {
+	--primary-color: rgb(25, 182, 255);
+	--sec-color: rgb(12, 82, 151);
 }
 
 * {
@@ -19,8 +19,8 @@ body {
 	box-sizing: border-box;
 }
 .form {
-	background: rgb(255, 255, 255, .75);
-    backdrop-filter: blur(5px);
+	background: rgb(255, 255, 255, 0.75);
+	backdrop-filter: blur(5px);
 	/* border: 1px solid black; */
 	box-shadow: inset 0px 0px 10px var(--primary-color);
 	width: 600px;
@@ -33,7 +33,7 @@ body {
 	/* display: flex;
     flex-direction: column;
     align-items: center; */
-    position: relative;
+	position: relative;
 }
 .form-items {
 	height: 450px;
@@ -47,41 +47,39 @@ body {
 	margin: 0 auto;
 	/* background: red; */
 }
-.item-heading{
-    width: 100%;
-    text-align: center;
-    color: var(--primary-color);
-    font-size: 200%;
-
+.item-heading {
+	width: 100%;
+	text-align: center;
+	color: var(--primary-color);
+	font-size: 200%;
 }
 .change-btns {
-    all: unset;
-    position: absolute;
-    top: 80%;
-    width: 100%;
-    margin: 0;
-    /* background: red; */
+	all: unset;
+	position: absolute;
+	top: 80%;
+	width: 100%;
+	margin: 0;
+	/* background: red; */
 	display: flex;
-    justify-content: space-between;
+	justify-content: space-between;
 }
-.change-item{
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    border-radius: 50px;
-    display: grid;
-    place-items: center;
-    font-size: 150%;
-    color: white;
+.change-item {
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	border-radius: 50px;
+	display: grid;
+	place-items: center;
+	font-size: 150%;
+	color: white;
 }
-.change-item:first-child{
-    top: 0;
-    left: 20px;
-
+.change-item:first-child {
+	top: 0;
+	left: 20px;
 }
-.change-item:last-child{
-    top: 0;
-    right: 20px;
+.change-item:last-child {
+	top: 0;
+	right: 20px;
 }
 input {
 	display: block;
@@ -95,15 +93,17 @@ input {
 	border: none;
 	background: var(--primary-color);
 	color: white;
-    transition: .35s;
+	transition: 0.35s;
 }
-input::placeholder, textarea::placeholder {
+input::placeholder,
+textarea::placeholder {
 	color: white;
 	font-weight: 900;
 }
-input:focus, textarea:focus{
-    background: var(--sec-color);
-    outline-color: var(--primary-color);
+input:focus,
+textarea:focus {
+	background: var(--sec-color);
+	outline-color: var(--primary-color);
 }
 textarea {
 	display: block;
@@ -111,29 +111,36 @@ textarea {
 	height: 50px;
 	margin: 10px auto;
 	font-size: 100%;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
 	border: none;
 	box-sizing: border-box;
 	padding: 10px;
 	background: var(--primary-color);
-    border-radius: 5px;
-    color: white;
+	border-radius: 5px;
+	color: white;
 }
-.duration{
-    width: 400px;
-    /* background: red; */
-    display: flex;
-    justify-content: space-between;
-
+.duration,
+.program {
+	width: 400px;
+	/* background: red; */
+	display: flex;
+	justify-content: space-between;
 }
-.duration label{
-    color: var(--sec-color);
-    margin: 0;
-    flex-basis: 40%;
-    /* width: 40%; */
+.program input {
+	flex-basis: 45%;
 }
-.duration label input{
-    width: 100%;
+.education {
+	color: var(--sec-color);
+}
+.duration label,
+.grad-date {
+	color: var(--sec-color);
+	margin: 0;
+	flex-basis: 40%;
+	/* width: 40%; */
+}
+.duration label input {
+	width: 100%;
 }
 button {
 	display: flex;
@@ -145,27 +152,29 @@ button {
 	background: var(--primary-color);
 	border: none;
 	border-radius: 5px;
-    color: white;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-weight: 700;
-    transition: .35s;
+	color: white;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-weight: 700;
+	transition: 0.35s;
 	/* padding: 0 10px; */
 }
-button:focus{
-    background: var(--sec-color);
-    outline-color: var(--primary-color);
+button:focus {
+	background: var(--sec-color);
+	outline-color: var(--primary-color);
 }
-button:hover{
-    background: var(--sec-color);
+button:hover {
+	background: var(--sec-color);
 }
-.disabled:disabled{
-    background:rgb(144, 218, 252);
+.disabled:disabled {
+	background: rgb(144, 218, 252);
 }
-.add{
+.add {
 	font-size: 30px;
 	font-weight: 900;
 }
-.interests, .languages, .skills{
+.interests,
+.languages,
+.skills {
 	width: 400px;
 	/* background: red; */
 	display: flex;
@@ -173,7 +182,9 @@ button:hover{
 	max-height: 300px;
 	overflow-y: scroll;
 }
-.interest, .language, .skill{
+.interest,
+.language,
+.skill {
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
@@ -188,25 +199,30 @@ button:hover{
 	cursor: pointer;
 }
 
-.close{
+.close {
 	margin-left: 10px;
 	justify-self: flex-end;
 	transform: translatey(1px);
 	opacity: 0;
-	
-	transition: .35s;
-	
+	z-index: 1;
+	transition: 0.35s;
 }
-.interest:hover > .close, .language:hover > .close, .skill:hover > .close{
+.close-container > .close {
+	color: crimson;
+}
+.interest:hover > .close,
+.language:hover > .close,
+.skill:hover > .close,
+.project:hover .close,
+.experience:hover .close {
 	opacity: 1;
-	
 }
-.projects{
+.projects {
 	height: 200px;
 	/* overflow-y: scroll; */
 	/* background: red; */
 }
-.experiences{
+.experiences {
 	/* background: red; */
 	height: 100px;
 	width: 400px;
@@ -214,16 +230,21 @@ button:hover{
 	overflow-y: scroll;
 }
 
-.project, .experience{
-    color: var(--sec-color);
-    position: relative;
-	width: fit-content;
+.project,
+.experience {
+	color: var(--sec-color);
+	position: relative;
+	width: 400px;
+	margin: auto;
 }
-.project h2, .experience h2{
-    font-size: 120%;
-    
+.project h2,
+.experience h2 {
+	font-size: 120%;
 }
-.project-details, .experience-details{
+summary {
+	font-size: 150%;
+}
+/* .project-details, .experience-details{
     position: absolute;
     opacity: 0;
     scale: 0;
@@ -233,14 +254,14 @@ button:hover{
     width: 400px;
     border-radius: 10px;
     padding: 10px;
-}
-.relative-pos{
+} */
+.relative-pos {
 	position: relative;
 	/* background: red; */
 }
-.experience-hover{
+.experience-hover {
 	position: absolute;
-	background:white;
+	background: white;
 	color: var(--sec-color);
 	width: 400px;
 	max-height: 100px;
@@ -249,29 +270,31 @@ button:hover{
 	top: 0;
 	left: 0px;
 	border-radius: 10px;
-	transition: .45s;
+	transition: 0.45s;
 	padding: 10px;
-	transform: translatey(-50px) scaley(0) ;
+	transform: translatey(-50px) scaley(0);
 	opacity: 0;
-	animation: in .1s linear forwards;
+	animation: in 0.1s linear forwards;
 }
-@keyframes in{
-	100%{
+@keyframes in {
+	100% {
 		opacity: 1;
-		transform:translatey(0) scaley(1) ;
+		transform: translatey(0) scaley(1);
 	}
 }
-.experience-details{
+.experience-details {
 	width: 400px;
 	box-sizing: border-box;
 }
-.project:hover h2, .experience:hover h2{
-    /* background: white; */
-    cursor: pointer;
+.project:hover h2,
+.experience:hover h2 {
+	/* background: white; */
+	cursor: pointer;
 }
-.project:hover > .project-details, .experience:hover > .experience-details{
- opacity: 1;
- scale: 1;   
+.project:hover > .project-details,
+.experience:hover > .experience-details {
+	opacity: 1;
+	scale: 1;
 }
 
 .preview {
@@ -330,15 +353,19 @@ button:hover{
 .theme .about {
 	/* background: lime; */
 	height: max-content;
-	margin: 20px 30px;
+	margin: 20px 20px;
 }
 fieldset {
 	border: 1px solid transparent;
-	border-top: 1px solid rgb(0, 0, 0);
+	width: 100%;
+	/* border-top: 1px solid rgb(0, 0, 0); */
 }
 legend {
-	padding: 5px 10px;
-	margin: auto;
+	width: 700px;
+	padding: 10px 0px;
+	margin-bottom: 10px;
+	text-align: left;
+	border-bottom: 2px solid rgb(63, 63, 63);
 }
 .theme .skills {
 	/* background: lime; */
@@ -360,11 +387,20 @@ legend {
 	/* background: red;  */
 	margin: 2px 30px;
 }
-
-
-
-
-/* ========= T E S T I N G ======= */
+.theme .proj div,
+.theme .exp div,
+.theme .edu div {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.preview-btns {
+	width: fit-content;
+	display: flex;
+	margin: auto;
+	gap: 10px;
+}
+/* ========= T R A N S I T I O N S ======= */
 h1 {
 	text-align: center;
 }

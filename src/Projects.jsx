@@ -1,5 +1,7 @@
 import React, { useState } from "react"
-import {MdAddCircle} from 'react-icons/md'
+import { MdAddCircle } from "react-icons/md"
+import { AiFillCloseCircle } from "react-icons/ai"
+import { IoTrashSharp } from "react-icons/io5"
 
 const Projects = (props) => {
 	// const [projects, setProjects] = useState([])
@@ -15,7 +17,6 @@ const Projects = (props) => {
 	const handleChange = (e) => {
 		let value = e.target.value
 		let name = e.target.name
-		
 
 		if (name === "start" || name === "end") {
 			let date = new Date(value)
@@ -36,23 +37,35 @@ const Projects = (props) => {
 			start: "",
 			end: "",
 			description: "",
-			startStr: '',
-			endStr: '',
+			startStr: "",
+			endStr: "",
 		})
 	}
 
 	const projectsList =
 		props.projects.length > 0
-			? props.projects.map((proj) => {
+			? props.projects.map((proj, index) => {
 					return (
-						<div className='project'>
-							<h2>{proj.name}</h2>
-							<div className="project-details">
-							<p>
-								{proj.startStr} - {proj.endStr}
-							</p>
-							<p>{proj.description}</p>
-						</div></div>
+						<details
+							className='project'
+							key={index}
+						>
+							<summary>
+								<b>{proj.name}</b>{" "}
+								<span
+									className='close-container'
+									onClick={() => props.removeProject("projects", index)}
+								>
+									<IoTrashSharp className='close' />
+								</span>
+							</summary>
+							<div className='project-details'>
+								<p>
+									{proj.startStr} - {proj.endStr}
+								</p>
+								<p>{proj.description}</p>
+							</div>
+						</details>
 					)
 			  })
 			: ""
@@ -95,7 +108,9 @@ const Projects = (props) => {
 				onChange={handleChange}
 			></textarea>
 			<div>
-				<button onClick={handleAdd}><MdAddCircle className='add'/></button>
+				<button onClick={handleAdd}>
+					<MdAddCircle className='add' />
+				</button>
 			</div>
 			<div className='projects'>{projectsList}</div>
 		</div>

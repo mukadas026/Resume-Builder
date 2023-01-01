@@ -1,16 +1,28 @@
 import React, { useState } from "react"
+import { AiFillCloseCircle } from "react-icons/ai"
+import { MdAddCircle } from "react-icons/md"
+import { IoTrashSharp } from "react-icons/io5"
 
 const Education = (props) => {
 	const [education, setEducation] = useState({
 		institution: "",
 		location: "",
+		degree: "",
 		program: "",
-		graduation: "",
+		gradDate: "",
+		gradDateStr: "",
 	})
 
 	const handleChange = (e) => {
 		let value = e.target.value
 		let name = e.target.name
+
+		if (name === "gradDate") {
+			let date = new Date(value)
+			let str = `${date.getMonth()}/${date.getFullYear()}`
+			let nameStr = `${name}Str`
+			return setEducation((prev) => ({ ...prev, [name]: value, [nameStr]: str }))
+		}
 
 		return setEducation((prevEducation) => ({ ...prevEducation, [name]: value }))
 	}
@@ -21,21 +33,31 @@ const Education = (props) => {
 		setEducation({
 			institution: "",
 			location: "",
+			degree: "",
 			program: "",
-			graduation: "",
+			gradDate: "",
+			gradDateStr: "",
 		})
 	}
 
 	const educationList =
 		props.education.length > 0
-			? props.education.map((item) => {
+			? props.education.map((item, index) => {
 					return (
-						<div>
+						<div className='education'>
 							<p>
-								<b>{item.institution}</b> {item.location} - <em>{item.graduation}</em>
+								<b>{item.institution}</b> - {item.location} <em>{item.gradDateStr}</em>{" "}
+								<span
+									className='close-container'
+									onClick={() => props.removeEducation("education", index)}
+								>
+									<IoTrashSharp className='close' />
+								</span>
 							</p>
 							<p>
-								<b>{item.program}</b>
+								<b>
+									{item.degree} - {item.program}
+								</b>
 							</p>
 						</div>
 					)
@@ -59,21 +81,32 @@ const Education = (props) => {
 					value={education.location}
 					onChange={handleChange}
 				/>
-				<input
-					type='text'
-					name='program'
-					placeholder='Program'
-					value={education.program}
-					onChange={handleChange}
-				/>
-				<input
-					type='text'
-					name='graduation'
-					placeholder='Graduation Date'
-					value={education.graduation}
-					onChange={handleChange}
-				/>
-				<button onClick={addEducation}>Add Education</button>
+				<div className='program'>
+					<input
+						type='text'
+						name='degree'
+						placeholder='Degree'
+						value={education.degree}
+						onChange={handleChange}
+					/>
+					<input
+						type='text'
+						name='program'
+						placeholder='Program'
+						value={education.program}
+						onChange={handleChange}
+					/>
+				</div>
+				<label className='grad-date'>
+					Graduation
+					<input
+						type='date'
+						name='gradDate'
+						value={education.gradDate}
+						onChange={handleChange}
+					/>
+				</label>
+				<button onClick={addEducation}><MdAddCircle className='add'/></button>
 			</div>
 			<div>{educationList}</div>
 		</div>
